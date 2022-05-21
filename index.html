@@ -1,97 +1,140 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-<script type="text/javascript">
-     var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[], privacy:[]};
- // replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
-clevertap.account.push({"id": "6W5-968-R56Z"});
-clevertap.privacy.push({optOut: false}); //set the flag to true, if the user of the device opts out of sharing their data
-clevertap.privacy.push({useIP: false}); //set the flag to true, if the user agrees to share their IP data
- (function () {
-         var wzrk = document.createElement('script');
-         wzrk.type = 'text/javascript';
-         wzrk.async = true;
-         wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/a.js';
-         var s = document.getElementsByTagName('script')[0];
-         s.parentNode.insertBefore(wzrk, s);
-  })();
-</script>
+<html lang="en">
+<head>
+    <link rel="manifest" href="/manifest.json">
     <meta charset="UTF-8">
-    <title>Registration Form</title>
-    <link rel="stylesheet" href="style.css">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+        var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[], privacy:[]};
+    // replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
+   clevertap.account.push({"id": "TEST-ZWW-6Z6-9Z6Z"});
+   clevertap.privacy.push({optOut: false}); //set the flag to true, if the user of the device opts out of sharing their data
+   clevertap.privacy.push({useIP: false}); //set the flag to true, if the user agrees to share their IP data
+    (function () {
+            var wzrk = document.createElement('script');
+            wzrk.type = 'text/javascript';
+            wzrk.async = true;
+            wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/a.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(wzrk, s);
+     })();
+     // with the exception of one of Identity, Email, or FBID
+// each of the following fields is optional
+     function passon(){
+    var username = document.getElementById('username').value;
+    var Email = document.getElementById('Email').value;
+    var Phone = document.getElementById('Phone').value;
+    var Identity = document.getElementById('Identity').value;
+    var DOB = document.getElementById('DOB').value;
+    var food = document.getElementById('food').value;
+    clevertap.onUserLogin.push(
+    {
+    "Site": {
+    "Name": username,            // String
+    "Identity": Identity,              // String or number
+    "Email": Email,         // Email address of the user
+    "Phone": Phone,           // Phone (with the country code)
+    "Gender": "M",                     // Can be either M or F
+    "Favourite Food": food,
+    "DOB": new Date(DOB),
+    "MSG-email": false,
+    "MSG-push": true,
+    "MSG-sms": true,
+    "MSG-whatsapp": true,
+    }
+    })
+}
+    function pushData(){
+        var username = document.getElementById('username').value;
+        var Email = document.getElementById('Email').value;
+        var Phone = document.getElementById('Phone').value;
+        var Identity = document.getElementById('Identity').value;
+        var DOB = document.getElementById('DOB').value;
+        var food = document.getElementById('food').value;
+        clevertap.profile.push({
+            "Site": {
+            "Name": username,
+            "Identity": Identity,
+            "Email": Email,
+            "Phone": Phone,
+            "Favourite Food": food,
+            "DOB": new Date(DOB),
+            }
+        });
+    }
+    function event_on(){
+    var Event_name = document.getElementById('Event').value;
+    var product = document.getElementById('product').value;
+    var price = document.getElementById('price').value;
+    clevertap.event.push(Event_name, {
+    "Product name": product,
+    "Price":price,
+    });
+}
+   </script>
+</head>
 <body>
-  <div class="container">
-    <div class="title">Registration</div>
-    <div class="content">
-      <form action="#">
-        <div class="user-details">
-          <div class="input-box">
-            <span class="details">Full Name</span>
-            <input type="text" placeholder="Enter your name" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Username</span>
-            <input type="text" placeholder="Enter your username" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Email</span>
-            <input type="text" placeholder="Enter your email" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Phone Number</span>
-            <input type="text" placeholder="Enter your number" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Password</span>
-            <input type="password" placeholder="Enter your password" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Confirm Password</span>
-            <input type="password" placeholder="Confirm your password" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Favorite food</span>
-            <input type="text" placeholder="Enter your favorite food" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Favorite hotel</span>
-            <input type="text" placeholder="Enter your favorite hotel" required>
-          </div>
+    <a href="twitter://account?">link</a>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <div align ='center'><form>
+        <div class="form-group">
+        <label for="username">UserName</label>
+        <input type="text" class="form-control" id="username" placeholder="Enter User" style="width:400px;">
         </div>
-        <div class="gender-details">
-          <input type="radio" name="gender" id="dot-1">
-          <input type="radio" name="gender" id="dot-2">
-          <input type="radio" name="gender" id="dot-3">
-          <span class="gender-title">Gender</span>
-          <div class="category">
-            <label for="dot-1">
-            <span class="dot one"></span>
-            <span class="gender">Male</span>
-          </label>
-          <label for="dot-2">
-            <span class="dot two"></span>
-            <span class="gender">Female</span>
-          </label>
-          <label for="dot-3">
-            <span class="dot three"></span>
-            <span class="gender">Prefer not to say</span>
-            </label>
-          </div>
+        <div class="form-group">
+            <label for="Enail">Email Address</label>
+            <input type="email" class="form-control" id="Email" placeholder="Enter email" style="width:400px;">
         </div>
-        <div class="button">
-          <input type="submit" value="Login">
+        <div class="form-group">
+            <label for="Phone">Phone</label>
+            <input type="text" class="form-control" id="Phone" placeholder="Enter Phone" style="width:200px;">
         </div>
-        <div class="button">
-          <input type="submit" value="Event">
+        <div class="form-group">
+            <label for="Identity">Identity</label>
+            <input type="text" class="form-control" id="Identity" placeholder="Enter ID" style="width:200px;">
         </div>
-        <div class="button">
-          <input type="submit" value="Extra">
+        <div class="form-group">
+                <label for="food">Favourite Food</label>
+                <input type="text" class="form-control" id="food" placeholder="Favourite Food" style="width:200px;">
+            </div>
+        <div class="form-group">
+            <label for="DOB">Date of Birth</label>
+            <input type="text" class="form-control" id="DOB" placeholder="Month Date, Year 00:00:00" style="width:400px;">
         </div>
-      </form>
+        <div>
+        <button class ="btn btn-primary" onclick="passon()">Login</button>   <button class ="btn btn-primary" onclick="pushData()">Push</button>
     </div>
-  </div>
+    </form></div>
+    &nbsp;
+    <div align ='center'><form><div>
+                <input type="text" class="form-control" id="Event" placeholder="Event Name" style="width:400px;"> <input type="text" class="form-control" id="product" placeholder="Product" style="width:400px;">
+                <input type="text" class="form-control" id="price" placeholder="Price" style="width:400px;">
+            </div>
+            &nbsp;
+            <div>
+                    <button class ="btn btn-primary" onclick="event_on()">Test</button>
+            </div>
+            </form>
+        </div><div>
 
-</body>
-</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
